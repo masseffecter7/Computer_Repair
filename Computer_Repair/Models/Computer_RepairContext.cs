@@ -22,5 +22,13 @@ namespace Computer_Repair.Models
         public System.Data.Entity.DbSet<Computer_Repair.Models.Accessorie> Accessories { get; set; }
 
         public System.Data.Entity.DbSet<Computer_Repair.Models.KindsOfAccessories> KindsOfAccessories { get; set; }
+
+        public System.Data.Entity.DbSet<Computer_Repair.Models.Customers> Customers { get; set; }
+
+        public System.Data.Entity.DbSet<Computer_Repair.Models.Orders> Orders { get; set; }
+
+        public System.Data.Entity.DbSet<Computer_Repair.Models.Workers> Workers { get; set; }
+
+        public System.Data.Entity.DbSet<Computer_Repair.Models.Services> Services { get; set; }
     }
 }

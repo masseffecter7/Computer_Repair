@@ -1,4 +1,4 @@
-﻿@model Computer_Repair.Models.Accessorie
+﻿@model Computer_Repair.Models.Workers
 
 @{
     ViewBag.Title = "Delete";
@@ -8,31 +8,23 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Accessorie</h4>
+    <h4>Workers</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.KindsOfAccessories.Name)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.KindsOfAccessories.Name)
+            @Html.DisplayFor(model => model.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Surname)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
+            @Html.DisplayFor(model => model.Surname)
         </dd>
 
     </dl>

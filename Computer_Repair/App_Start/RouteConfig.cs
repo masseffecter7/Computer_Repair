@@ -18,6 +18,36 @@ namespace Computer_Repair
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Accessories",
+                url: "{Accessories}",
+                defaults: new { controller = "Accessories", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Customers",
+                url: "{Customers}",
+                defaults: new { controller = "Customers", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "KindsOfAccessories",
+                url: "{KindsOfAccessories}",
+                defaults: new { controller = "KindsOfAccessories", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Workers",
+                url: "{Workers}",
+                defaults: new { controller = "Workers", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Orders",
+                url: "{Orders}",
+                defaults: new { controller = "Orders", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }

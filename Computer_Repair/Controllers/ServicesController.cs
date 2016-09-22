@@ -10,112 +10,107 @@ using Computer_Repair.Models;
 
 namespace Computer_Repair.Controllers
 {
-    public class AccessoriesController : Controller
+    public class ServicesController : Controller
     {
         private Computer_RepairContext db = new Computer_RepairContext();
 
-        // GET: Accessories
+        // GET: Services
         public ActionResult Index()
         {
-            var accessories = db.Accessories.Include(a => a.KindsOfAccessories);
-            return View(accessories.ToList());
+            return View(db.Services.ToList());
         }
 
-        // GET: Accessories/Details/5
+        // GET: Services/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Accessorie accessorie = db.Accessories.Find(id);
-            if (accessorie == null)
+            Services services = db.Services.Find(id);
+            if (services == null)
             {
                 return HttpNotFound();
             }
-            return View(accessorie);
+            return View(services);
         }
 
-        // GET: Accessories/Create
+        // GET: Services/Create
         public ActionResult Create()
         {
-            ViewBag.KindId = new SelectList(db.KindsOfAccessories, "KindId", "Name");
             return View();
         }
 
-        // POST: Accessories/Create
+        // POST: Services/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AccessorieId,KindId,Description,Price")] Accessorie accessorie)
+        public ActionResult Create([Bind(Include = "ServiceId,Name,Discription,Price")] Services services)
         {
             if (ModelState.IsValid)
             {
-                db.Accessories.Add(accessorie);
+                db.Services.Add(services);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.KindId = new SelectList(db.KindsOfAccessories, "KindId", "Name", accessorie.KindId);
-            return View(accessorie);
+            return View(services);
         }
 
-        // GET: Accessories/Edit/5
+        // GET: Services/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Accessorie accessorie = db.Accessories.Find(id);
-            if (accessorie == null)
+            Services services = db.Services.Find(id);
+            if (services == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.KindId = new SelectList(db.KindsOfAccessories, "KindId", "Name", accessorie.KindId);
-            return View(accessorie);
+            return View(services);
         }
 
-        // POST: Accessories/Edit/5
+        // POST: Services/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AccessorieId,KindId,Description,Price")] Accessorie accessorie)
+        public ActionResult Edit([Bind(Include = "ServiceId,Name,Discription,Price")] Services services)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(accessorie).State = EntityState.Modified;
+                db.Entry(services).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.KindId = new SelectList(db.KindsOfAccessories, "KindId", "Name", accessorie.KindId);
-            return View(accessorie);
+            return View(services);
         }
 
-        // GET: Accessories/Delete/5
+        // GET: Services/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Accessorie accessorie = db.Accessories.Find(id);
-            if (accessorie == null)
+            Services services = db.Services.Find(id);
+            if (services == null)
             {
                 return HttpNotFound();
             }
-            return View(accessorie);
+            return View(services);
         }
 
-        // POST: Accessories/Delete/5
+        // POST: Services/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Accessorie accessorie = db.Accessories.Find(id);
-            db.Accessories.Remove(accessorie);
+            Services services = db.Services.Find(id);
+            db.Services.Remove(services);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

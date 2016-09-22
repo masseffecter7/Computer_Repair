@@ -1,4 +1,4 @@
-﻿@model Computer_Repair.Models.Accessorie
+﻿@model Computer_Repair.Models.Services
 
 @{
     ViewBag.Title = "Details";
@@ -7,23 +7,23 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Accessorie</h4>
+    <h4>Services</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.KindsOfAccessories.Name)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.KindsOfAccessories.Name)
+            @Html.DisplayFor(model => model.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Discription)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.Discription)
         </dd>
 
         <dt>
@@ -37,6 +37,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AccessorieId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ServiceId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

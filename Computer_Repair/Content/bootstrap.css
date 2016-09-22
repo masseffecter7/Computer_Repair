@@ -4079,6 +4079,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
   .navbar-header {
     float: left;
+    font-size: 20pt;
   }
 }
 
@@ -4194,7 +4195,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-brand {
   float: left;
   padding: 15px 15px;
-  font-size: 18px;
+  font-size: 20pt;
   line-height: 20px;
 }
 

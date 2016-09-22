@@ -1,0 +1,90 @@
+﻿@model Computer_Repair.Models.Orders
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Orders</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customers.Name_Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customers.Name_Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Workers.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Workers.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfOrder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfComplection)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfComplection)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MarkOfPayment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MarkOfPayment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MarkOfComplection)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MarkOfComplection)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WarrantyPeriod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WarrantyPeriod)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

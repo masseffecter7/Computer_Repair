@@ -7,19 +7,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Computer_Repair.Models
 {
-    [Table("Комплектующие")]
-    public class Accessorie
+    [Table("Услуги")]
+    public class Services
     {
         [Key]
-        public int AccessorieId { get; set; }
+        public int ServiceId { get; set; }
 
-        public int KindId { get; set; }
+        public string Name { get; set; }
 
-        public string Description { get; set; }
+        public string Discription { get; set; }
 
         public decimal Price { get; set; }
-
-        public KindsOfAccessories KindsOfAccessories { get; set; }
 
         public List<Orders> Orderss { get; set; }
     }

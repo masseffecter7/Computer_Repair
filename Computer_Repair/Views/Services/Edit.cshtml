@@ -1,4 +1,4 @@
-﻿@model Computer_Repair.Models.Accessorie
+﻿@model Computer_Repair.Models.Services
 
 @{
     ViewBag.Title = "Edit";
@@ -12,24 +12,24 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Accessorie</h4>
+        <h4>Services</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.AccessorieId)
+        @Html.HiddenFor(model => model.ServiceId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.KindId, "KindId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("KindId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.KindId, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Discription, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Discription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Discription, "", new { @class = "text-danger" })
             </div>
         </div>
 

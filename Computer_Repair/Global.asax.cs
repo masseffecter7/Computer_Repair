@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Computer_Repair.Models;
+using System.Data.Entity;
 
 namespace Computer_Repair
 {
@@ -12,6 +14,9 @@ namespace Computer_Repair
     {
         protected void Application_Start()
         {
+            /*Database.SetInitializer<Computer_RepairContext>(new DropCreateDatabaseAlways<Computer_RepairContext>());
+            Computer_RepairContext A = new Computer_RepairContext();
+            A.Database.Initialize(true);*/
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
