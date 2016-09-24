@@ -20,9 +20,10 @@ namespace Computer_Repair.Models
         public int CustomerId { get; set; } //др
 
         public Customers Customers { get; set; } //для customerid
-        
-        public List<string> AccessorieId { get; set; } //список комплектующих (м->м)
-        
+      
+        public List<Accessorie> Accessories { get; set; }       //список комплектующих (м->м)
+        public List<string> AccessorieId { get; set; }
+
         public decimal Payment { get; set; }
         
         public bool MarkOfPayment { get; set; }
@@ -33,10 +34,43 @@ namespace Computer_Repair.Models
         
         public string WarrantyPeriod { get; set; }
 
-        public List<string> ServiceId { get; set; } //список услуг (м->м)
+        public List<Services> Servicess { get; set; }           //список услуг (м->м)
+        public List<string> SeviceId { get; set; }
 
         public int WorkerId { get; set; }       //др
 
         public Workers Workers { get; set; } //для workerid
+
+
+
+
+        /*public class Team
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+
+            public ICollection<Player> Players { get; set; }
+            public Team()
+            {
+                Players = new List<Player>();
+            }
+        }
+        public class Player
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Position { get; set; }
+            public int Age { get; set; }
+
+            public ICollection<Team> Teams { get; set; }
+            public Player()
+            {
+                Teams = new List<Team>();
+            }
+        }*/
+
+
+
+
     }
 }

@@ -50,10 +50,10 @@
             @Html.DisplayFor(modelItem => item.Workers.Name)
         </td>
         <td>
-            @item.DateOfOrder.ToShortDateString()
+            @Html.DisplayFor(modelItem => item.DateOfOrder)
         </td>
         <td>
-            @item.DateOfComplection.ToShortDateString()
+            @Html.DisplayFor(modelItem => item.DateOfComplection)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Payment)

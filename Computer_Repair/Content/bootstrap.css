@@ -52,12 +52,14 @@ audio:not([controls]) {
 }
 
 html {
+    background-image: url(../Resources/background.bmp);
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
 
 body {
+    background-image: url(../Resources/background.bmp);
   margin: 0;
 }
 
@@ -311,11 +313,12 @@ html {
 }
 
 body {
+
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #ffffff;
+  
 }
 
 input,

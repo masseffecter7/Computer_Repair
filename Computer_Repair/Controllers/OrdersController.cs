@@ -17,9 +17,8 @@ namespace Computer_Repair.Controllers
         // GET: Orders
         public ActionResult Index()
         {
-            List<Orders> orders = db.Orders.Include(o => o.Customers).Include(o => o.Workers).ToList();
- //           orders.ForEach(a => a.DateOfOrder = a.DateOfOrder.);
-            return View(orders);
+            var orders = db.Orders.Include(o => o.Customers).Include(o => o.Workers);
+            return View(orders.ToList());
         }
 
         // GET: Orders/Details/5
