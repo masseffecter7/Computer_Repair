@@ -63,9 +63,29 @@ namespace Computer_Repair.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _91672255 {
+            get {
+                object obj = ResourceManager.GetObject("_91672255", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap luxfon_com_10571 {
             get {
                 object obj = ResourceManager.GetObject("luxfon_com_10571", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap slide5 {
+            get {
+                object obj = ResourceManager.GetObject("slide5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -234,6 +234,8 @@
     <Content Include="Content\Site.css" />
     <None Include="Resources\background.bmp" />
     <None Include="Properties\luxfon.com_10571.jpg" />
+    <None Include="Properties\slide5.png" />
+    <None Include="Properties\91672255.jpg" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
