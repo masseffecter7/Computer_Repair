@@ -50,7 +50,7 @@ namespace Computer_Repair.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "KindId,Name,Description")] KindsOfAccessories kindsOfAccessories)
+        public ActionResult Create([Bind(Include = "KindId,Kind,Description")] KindsOfAccessories kindsOfAccessories)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace Computer_Repair.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "KindId,Name,Description")] KindsOfAccessories kindsOfAccessories)
+        public ActionResult Edit([Bind(Include = "KindId,Kind,Description")] KindsOfAccessories kindsOfAccessories)
         {
             if (ModelState.IsValid)
             {

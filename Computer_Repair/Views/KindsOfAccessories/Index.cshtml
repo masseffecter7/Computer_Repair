@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Computer_Repair.Models.KindsOfAccessories>
 
 @{
-    ViewBag.Title = "KindOfAccessories";
+    ViewBag.Title = "Index";
 }
 
-<h2>Kind of Accessories</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Kind)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
@@ -23,7 +23,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.Kind)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)

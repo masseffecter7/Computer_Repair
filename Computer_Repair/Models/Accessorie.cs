@@ -15,9 +15,12 @@ namespace Computer_Repair.Models
 
         public int KindId { get; set; }
 
+        public string AccessorieName { get; set; }
+
         public string Description { get; set; }
 
-        public decimal Price { get; set; }
+        //проблема с ценами
+        public int Price { get; set; }
 
         public KindsOfAccessories KindsOfAccessories { get; set; }
 

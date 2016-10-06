@@ -20,22 +20,22 @@ namespace Computer_Repair.Models
         public int CustomerId { get; set; } //др
 
         public Customers Customers { get; set; } //для customerid
-      
-        public List<Accessorie> Accessories { get; set; }       //список комплектующих (м->м)
-        public List<string> AccessorieId { get; set; }
 
-        public decimal Payment { get; set; }
+        public string ListOfAccessories { get; set; }
+        public Accessorie Accessorie { get; set; }       //список комплектующих (м->м)
+
+        public int Payment { get; set; }
         
         public bool MarkOfPayment { get; set; }
         
         public bool MarkOfComplection { get; set; }
         
-        public decimal TotalCost { get; set; }
+        public int TotalCost { get; set; }
         
         public string WarrantyPeriod { get; set; }
 
-        public List<Services> Servicess { get; set; }           //список услуг (м->м)
-        public List<string> SeviceId { get; set; }
+        public string ListOfServices { get; set; }
+        public Services Services { get; set; }           //список услуг (м->м) 
 
         public int WorkerId { get; set; }       //др
 

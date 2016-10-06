@@ -17,7 +17,7 @@ namespace Computer_Repair.Models
 
         public string Discription { get; set; }
 
-        public decimal Price { get; set; }
+        public float Price { get; set; }
 
         public List<Orders> Orderss { get; set; }
     }

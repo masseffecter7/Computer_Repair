@@ -18,7 +18,7 @@ namespace Computer_Repair.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var orders = db.Orders.Include(o => o.Customers).Include(o => o.Workers);
+            var orders = db.Orders.Include(o => o.Customers).Include(o => o.Workers).Include(o => o.Accessorie).Include(o => o.Services);
             return View(orders.ToList());
         }
 
@@ -44,6 +44,8 @@ namespace Computer_Repair.Controllers
         {
             ViewBag.CustomerId = new SelectList(db.Customers, "CustomerId", "Name_Surname");
             ViewBag.WorkerId = new SelectList(db.Workers, "WorkerId", "Name");
+            ViewBag.AccessorieId = new MultiSelectList(db.Accessories, "AccessorieId", "AccessorieName");
+            ViewBag.ServiceId = new MultiSelectList(db.Services, "ServiceId", "Name");
             return View();
         }
 
@@ -53,10 +55,16 @@ namespace Computer_Repair.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderId,DateOfOrder,DateOfComplection,CustomerId,Payment,MarkOfPayment,MarkOfComplection,TotalCost,WarrantyPeriod,WorkerId")] Orders orders)
+        public ActionResult Create([Bind(Include = "OrderId,DateOfOrder,DateOfComplection,ListOfAaccessories,CustomerId,Payment,MarkOfPayment,MarkOfComplection,ListOfServices,TotalCost,WarrantyPeriod,WorkerId")] Orders orders, string[] AccessorieId, string[] ServiceId)
         {
+            string list1 = "";
+            string list2 = "";
             if (ModelState.IsValid)
             {
+                foreach (var i in AccessorieId) list1 += i + " ";
+                orders.ListOfAccessories = list1;
+                foreach (var j in ServiceId) list2 += j + " ";
+                orders.ListOfServices = list2;
                 db.Orders.Add(orders);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -64,6 +72,8 @@ namespace Computer_Repair.Controllers
 
             ViewBag.CustomerId = new SelectList(db.Customers, "CustomerId", "Name_Surname", orders.CustomerId);
             ViewBag.WorkerId = new SelectList(db.Workers, "WorkerId", "Name", orders.WorkerId);
+            ViewBag.AccessorieId = new SelectList(db.Accessories, "AccessorieId", "AccessorieName", orders.ListOfAccessories);
+            ViewBag.ServiceId = new MultiSelectList(db.Services, "ServiceId", "Name", orders.ListOfServices);
             return View(orders);
         }
 
@@ -82,6 +92,8 @@ namespace Computer_Repair.Controllers
             }
             ViewBag.CustomerId = new SelectList(db.Customers, "CustomerId", "Name_Surname", orders.CustomerId);
             ViewBag.WorkerId = new SelectList(db.Workers, "WorkerId", "Name", orders.WorkerId);
+            ViewBag.AccessorieId = new SelectList(db.Accessories, "AccessorieId", "AccessorieName", orders.ListOfAccessories);
+            ViewBag.ServiceId = new MultiSelectList(db.Services, "ServiceId", "Name", orders.ListOfServices);
             return View(orders);
         }
 
@@ -91,7 +103,7 @@ namespace Computer_Repair.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderId,DateOfOrder,DateOfComplection,CustomerId,Payment,MarkOfPayment,MarkOfComplection,TotalCost,WarrantyPeriod,WorkerId")] Orders orders)
+        public ActionResult Edit([Bind(Include = "OrderId,DateOfOrder,DateOfComplection,ListOfAaccessories,CustomerId,Payment,MarkOfPayment,MarkOfComplection,ListOfServices,TotalCost,WarrantyPeriod,WorkerId")] Orders orders, string[] AccessorieId, string[] ServiceId)
         {
             if (ModelState.IsValid)
             {
@@ -101,6 +113,8 @@ namespace Computer_Repair.Controllers
             }
             ViewBag.CustomerId = new SelectList(db.Customers, "CustomerId", "Name_Surname", orders.CustomerId);
             ViewBag.WorkerId = new SelectList(db.Workers, "WorkerId", "Name", orders.WorkerId);
+            ViewBag.AccessorieId = new SelectList(db.Accessories, "AccessorieId", "AccessorieName", orders.ListOfAccessories);
+            ViewBag.ServiceId = new MultiSelectList(db.Services, "ServiceId", "Name", orders.ListOfServices);
             return View(orders);
         }
 

@@ -42,7 +42,7 @@ namespace Computer_Repair.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.KindId = new SelectList(db.KindsOfAccessories, "KindId", "Name");
+            ViewBag.KindId = new SelectList(db.KindsOfAccessories, "KindId", "Kind");
             return View();
         }
 
@@ -52,7 +52,7 @@ namespace Computer_Repair.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AccessorieId,KindId,Description,Price")] Accessorie accessorie)
+        public ActionResult Create([Bind(Include = "AccessorieId,KindId,AccessorieName,Description,Price")] Accessorie accessorie)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +61,7 @@ namespace Computer_Repair.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.KindId = new SelectList(db.KindsOfAccessories, "KindId", "Name", accessorie.KindId);
+            ViewBag.KindId = new SelectList(db.KindsOfAccessories, "KindId", "Kind", accessorie.KindId);
             return View(accessorie);
         }
 
@@ -78,7 +78,7 @@ namespace Computer_Repair.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.KindId = new SelectList(db.KindsOfAccessories, "KindId", "Name", accessorie.KindId);
+            ViewBag.KindId = new SelectList(db.KindsOfAccessories, "KindId", "Kind", accessorie.KindId);
             return View(accessorie);
         }
 
@@ -88,7 +88,7 @@ namespace Computer_Repair.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AccessorieId,KindId,Description,Price")] Accessorie accessorie)
+        public ActionResult Edit([Bind(Include = "AccessorieId,KindId,AccessorieName,Description,Price")] Accessorie accessorie)
         {
             if (ModelState.IsValid)
             {
@@ -96,12 +96,11 @@ namespace Computer_Repair.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.KindId = new SelectList(db.KindsOfAccessories, "KindId", "Name", accessorie.KindId);
+            ViewBag.KindId = new SelectList(db.KindsOfAccessories, "KindId", "Kind", accessorie.KindId);
             return View(accessorie);
         }
 
         // GET: Accessories/Delete/5
-        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)

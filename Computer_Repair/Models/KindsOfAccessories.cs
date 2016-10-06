@@ -13,7 +13,7 @@ namespace Computer_Repair.Models
         [Key]
         public int KindId { get; set; }
 
-        public string Name { get; set; }
+        public string Kind { get; set; }
 
         public string Description { get; set; }
 
