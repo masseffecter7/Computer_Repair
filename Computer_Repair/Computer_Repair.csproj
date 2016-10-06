@@ -213,6 +213,7 @@
     <Compile Include="Models\Customers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\KindsOfAccessories.cs" />
+    <Compile Include="Models\ListOfAccessories.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Orders.cs" />
     <Compile Include="Models\Services.cs" />

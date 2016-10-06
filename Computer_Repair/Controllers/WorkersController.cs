@@ -15,12 +15,14 @@ namespace Computer_Repair.Controllers
         private Computer_RepairContext db = new Computer_RepairContext();
 
         // GET: Workers
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Workers.ToList());
         }
 
         // GET: Workers/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace Computer_Repair.Controllers
         }
 
         // GET: Workers/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -44,6 +47,7 @@ namespace Computer_Repair.Controllers
         // POST: Workers/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "WorkerId,Name,Surname")] Workers workers)
@@ -59,6 +63,7 @@ namespace Computer_Repair.Controllers
         }
 
         // GET: Workers/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -76,6 +81,7 @@ namespace Computer_Repair.Controllers
         // POST: Workers/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "WorkerId,Name,Surname")] Workers workers)
@@ -90,6 +96,7 @@ namespace Computer_Repair.Controllers
         }
 
         // GET: Workers/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,6 +112,7 @@ namespace Computer_Repair.Controllers
         }
 
         // POST: Workers/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

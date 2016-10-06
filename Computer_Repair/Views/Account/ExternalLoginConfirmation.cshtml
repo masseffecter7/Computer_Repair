@@ -1,21 +1,21 @@
 ﻿@model Computer_Repair.Models.ExternalLoginConfirmationViewModel
 @{
-    ViewBag.Title = "Регистрация";
+    ViewBag.Title = "Registration";
 }
 <h2>@ViewBag.Title.</h2>
-<h3>Связывание вашей учетной записи @ViewBag.LoginProvider.</h3>
+<h3>Linking your account @ViewBag.LoginProvider.</h3>
 
 @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
-    <h4>Форма связи</h4>
+    <h4>Form contact</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <p class="text-info">
-        Вы успешно прошли проверку подлинности через <strong>@ViewBag.LoginProvider</strong>
-            Введите имя пользователя на этом сайте ниже и нажмите кнопку "Зарегистрировать", чтобы завершить
-            вход.
+        You have successfully authenticated via the <strong>@ViewBag.LoginProvider</strong>
+        Enter your username on the site below and click "Register" to complete
+        entrance.
     </p>
     <div class="form-group">
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })

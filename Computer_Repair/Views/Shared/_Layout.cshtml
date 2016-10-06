@@ -24,6 +24,7 @@
                     <li>@Html.ActionLink("Workers", "Index", "Workers")</li>
                     <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
                 </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
@@ -31,7 +32,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET. Создано студентом группы ИТ-32 Попковым В.Э.</p>
+            <p>&copy; @DateTime.Now.Year – Computer repairs</p>
         </footer>
     </div>
 

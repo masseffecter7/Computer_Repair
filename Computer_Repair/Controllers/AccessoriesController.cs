@@ -15,6 +15,7 @@ namespace Computer_Repair.Controllers
         private Computer_RepairContext db = new Computer_RepairContext();
 
         // GET: Accessories
+        [Authorize]
         public ActionResult Index()
         {
             var accessories = db.Accessories.Include(a => a.KindsOfAccessories);
@@ -22,6 +23,7 @@ namespace Computer_Repair.Controllers
         }
 
         // GET: Accessories/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace Computer_Repair.Controllers
         }
 
         // GET: Accessories/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.KindId = new SelectList(db.KindsOfAccessories, "KindId", "Name");
@@ -46,6 +49,7 @@ namespace Computer_Repair.Controllers
         // POST: Accessories/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AccessorieId,KindId,Description,Price")] Accessorie accessorie)
@@ -62,6 +66,7 @@ namespace Computer_Repair.Controllers
         }
 
         // GET: Accessories/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,6 +85,7 @@ namespace Computer_Repair.Controllers
         // POST: Accessories/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "AccessorieId,KindId,Description,Price")] Accessorie accessorie)
@@ -95,6 +101,7 @@ namespace Computer_Repair.Controllers
         }
 
         // GET: Accessories/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,6 +117,7 @@ namespace Computer_Repair.Controllers
         }
 
         // POST: Accessories/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

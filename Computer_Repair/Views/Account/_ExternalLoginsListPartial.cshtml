@@ -1,15 +1,15 @@
 ﻿@model Computer_Repair.Models.ExternalLoginListViewModel
 @using Microsoft.Owin.Security
 
-<h4>Используйте для входа другую службу.</h4>
+<h4>Use to enter another service.</h4>
 <hr />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
     if (loginProviders.Count() == 0) {
         <div>
             <p>
-                Внешние службы проверки подлинности не настроены. В <a href="http://go.microsoft.com/fwlink/?LinkId=403804">этой статье</a>
-                вы можете узнать о том, как в этом приложении ASP.NET настроить вход через внешние службы.
+                External Authentication Service is not configured. In this article <a href="http://go.microsoft.com/fwlink/?LinkId=403804"></a> 
+                you can learn about how the ASP.NET application to configure the input through external services.             
             </p>
         </div>
     }
@@ -19,7 +19,7 @@
             <div id="socialLoginList">
                 <p>
                     @foreach (AuthenticationDescription p in loginProviders) {
-                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Войти с помощью учетной записи @p.Caption">@p.AuthenticationType</button>
+                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Sign in to your account @p.Caption">@p.AuthenticationType</button>
                     }
                 </p>
             </div>

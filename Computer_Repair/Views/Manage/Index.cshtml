@@ -1,32 +1,32 @@
 ﻿@model Computer_Repair.Models.IndexViewModel
 @{
-    ViewBag.Title = "Управление";
+    ViewBag.Title = "Control";
 }
 
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Изменение параметров учетной записи</h4>
+    <h4>Changing your account settings</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>Пароль:</dt>
+        <dt>Password:</dt>
         <dd>
             [
             @if (Model.HasPassword)
             {
-                @Html.ActionLink("Смена пароля", "ChangePassword")
+                @Html.ActionLink("Change password", "ChangePassword")
             }
             else
             {
-                @Html.ActionLink("Создать", "SetPassword")
+                @Html.ActionLink("Set password", "SetPassword")
             }
             ]
         </dd>
-        <dt>Внешние имена входа:</dt>
+        <dt>External logins:</dt>
         <dd>
             @Model.Logins.Count [
-            @Html.ActionLink("Управление", "ManageLogins") ]
+            @Html.ActionLink("Control", "ManageLogins") ]
         </dd>
         @*
             Номера телефонов можно использовать в качестве второго проверочного фактора для системы двухфакторной проверки подлинности.
@@ -56,11 +56,11 @@
                 }
             </dd>
         *@
-        <dt>Двухфакторная проверка подлинности:</dt>
+        <dt>Two-factor authentication:</dt>
         <dd>
             <p>
-                Поставщики двухфакторной проверки подлинности не настроены. В <a href="http://go.microsoft.com/fwlink/?LinkId=403804">этой статье</a>
-                вы можете узнать, как настроить двухфакторную проверку подлинности в этом приложении ASP.NET.
+                Suppliers of two-factor authentication is not configured. In this article, <a href="http://go.microsoft.com/fwlink/?LinkId=403804"> </a>
+                you can learn how to set up two-factor authentication in the ASP.NET application.
             </p>
             @*@if (Model.TwoFactor)
                 {
