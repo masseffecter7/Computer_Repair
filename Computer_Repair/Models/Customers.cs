@@ -21,7 +21,7 @@ namespace Computer_Repair.Models
 
         public bool Discount { get; set; }
 
-        public decimal Value { get; set; }
+        public int Value { get; set; }
 
         public List<Orders> Orderss { get; set; }
     }

@@ -50,7 +50,7 @@ namespace Computer_Repair.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ServiceId,Name,Discription,Price")] Services services)
+        public ActionResult Create([Bind(Include = "ServiceId,Service,Discription,Price")] Services services)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace Computer_Repair.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ServiceId,Name,Discription,Price")] Services services)
+        public ActionResult Edit([Bind(Include = "ServiceId,Service,Discription,Price")] Services services)
         {
             if (ModelState.IsValid)
             {

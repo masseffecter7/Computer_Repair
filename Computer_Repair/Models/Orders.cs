@@ -13,6 +13,7 @@ namespace Computer_Repair.Models
         [Key]
         public int OrderId { get; set; }
         
+        [DataType(DataType.Date)]
         public DateTime DateOfOrder { get; set; }
         
         public DateTime DateOfComplection { get; set; }

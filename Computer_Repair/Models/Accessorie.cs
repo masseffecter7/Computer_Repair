@@ -19,7 +19,6 @@ namespace Computer_Repair.Models
 
         public string Description { get; set; }
 
-        //проблема с ценами
         public int Price { get; set; }
 
         public KindsOfAccessories KindsOfAccessories { get; set; }

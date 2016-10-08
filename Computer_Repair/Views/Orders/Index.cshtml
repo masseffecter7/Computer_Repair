@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Orders";
 }
-
+<div  style="position: absolute; left: 3%; width: auto">
 <h2>Orders</h2>
 
 <p>
@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Customers.Name_Surname)
+            CustomerName
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Workers.Name)
+            WorkerName
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DateOfOrder)
@@ -44,7 +44,7 @@
         <th>
             @Html.DisplayNameFor(model => model.WarrantyPeriod)
         </th>
-        <th></th>
+        <th><div style="width:135px"></div></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -56,10 +56,10 @@
             @Html.DisplayFor(modelItem => item.Workers.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DateOfOrder)
+            @item.DateOfOrder.ToShortDateString()
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DateOfComplection)
+            @item.DateOfComplection.ToShortDateString()
         </td>
         <th>
             @Html.DisplayFor(modelItem => item.ListOfAccessories)
@@ -91,3 +91,4 @@
 }
 
 </table>
+    </div>

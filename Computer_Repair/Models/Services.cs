@@ -13,11 +13,11 @@ namespace Computer_Repair.Models
         [Key]
         public int ServiceId { get; set; }
 
-        public string Name { get; set; }
+        public string Service { get; set; }
 
         public string Discription { get; set; }
 
-        public float Price { get; set; }
+        public int Price { get; set; }
 
         public List<Orders> Orderss { get; set; }
     }
