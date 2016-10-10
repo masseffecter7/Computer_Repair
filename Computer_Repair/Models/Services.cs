@@ -13,10 +13,13 @@ namespace Computer_Repair.Models
         [Key]
         public int ServiceId { get; set; }
 
+        [Required]
         public string Service { get; set; }
 
+        [Required]
         public string Discription { get; set; }
 
+        [Required]
         public int Price { get; set; }
 
         public List<Orders> Orderss { get; set; }

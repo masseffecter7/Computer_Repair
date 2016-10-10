@@ -12,32 +12,41 @@ namespace Computer_Repair.Models
     {
         [Key]
         public int OrderId { get; set; }
-        
+
+        [Required]
         [DataType(DataType.Date)]
         public DateTime DateOfOrder { get; set; }
-        
+
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime DateOfComplection { get; set; }
-        
+
+        [Required]
         public int CustomerId { get; set; } //др
 
         public Customers Customers { get; set; } //для customerid
 
+        [Required]
         public string ListOfAccessories { get; set; }
         public Accessorie Accessorie { get; set; }       //список комплектующих (м->м)
 
+        [Required]
         public int Payment { get; set; }
-        
+
         public bool MarkOfPayment { get; set; }
         
         public bool MarkOfComplection { get; set; }
-        
+
+        [Required]
         public int TotalCost { get; set; }
         
         public string WarrantyPeriod { get; set; }
 
+        [Required]
         public string ListOfServices { get; set; }
         public Services Services { get; set; }           //список услуг (м->м) 
 
+        [Required]
         public int WorkerId { get; set; }       //др
 
         public Workers Workers { get; set; } //для workerid

@@ -88,9 +88,13 @@ namespace Computer_Repair.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(kindsOfAccessories).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Entry(kindsOfAccessories).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch { }
             }
             return View(kindsOfAccessories);
         }

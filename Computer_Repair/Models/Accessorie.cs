@@ -15,10 +15,13 @@ namespace Computer_Repair.Models
 
         public int KindId { get; set; }
 
+        [Required]
         public string AccessorieName { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
+        [Required]
         public int Price { get; set; }
 
         public KindsOfAccessories KindsOfAccessories { get; set; }

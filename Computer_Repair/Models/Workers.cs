@@ -13,8 +13,10 @@ namespace Computer_Repair.Models
         [Key]
         public int WorkerId { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         public string Surname { get; set; }
 
         public List<Orders> Orderss { get; set; }

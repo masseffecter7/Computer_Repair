@@ -13,8 +13,10 @@ namespace Computer_Repair.Models
         [Key]
         public int KindId { get; set; }
 
+        [Required]
         public string Kind { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
         public List<Accessorie> Accessories { get; set; }
