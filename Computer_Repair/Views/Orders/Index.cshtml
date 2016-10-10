@@ -7,7 +7,10 @@
 <h2>Orders</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (User.IsInRole("admin"))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
 </p>
 <table class="table">
     <tr>
@@ -83,9 +86,17 @@
             @Html.DisplayFor(modelItem => item.WarrantyPeriod)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderId })
+            @if (User.IsInRole("admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderId })
+            }
+            @Html.Display("&nbsp;") |
+            @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
+
+            @if (User.IsInRole("admin"))
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
+            }
         </td>
     </tr>
 }

@@ -7,7 +7,11 @@
 <h2>Accessorie</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (User.IsInRole("admin"))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
+    
 </p>
 <table class="table">
     <tr>
@@ -41,9 +45,18 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AccessorieId }) |
+            @if (User.IsInRole("admin"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.AccessorieId }) 
+            }
+            @Html.Display("&nbsp;") |
             @Html.ActionLink("Details", "Details", new { id=item.AccessorieId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AccessorieId })
+
+            @if (User.IsInRole("admin"))
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.AccessorieId })
+            }
+            
         </td>
     </tr>
 }

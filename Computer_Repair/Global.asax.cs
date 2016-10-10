@@ -17,6 +17,7 @@ namespace Computer_Repair
             /*Database.SetInitializer<Computer_RepairContext>(new DropCreateDatabaseAlways<Computer_RepairContext>());
             Computer_RepairContext A = new Computer_RepairContext();
             A.Database.Initialize(true);*/
+            //Database.SetInitializer<ApplicationDbContext>(new AppDbInitializer());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

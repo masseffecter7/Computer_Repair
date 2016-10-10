@@ -39,7 +39,7 @@ namespace Computer_Repair.Controllers
         }
 
         // GET: Accessories/Create
-        [Authorize]
+        [Authorize (Roles="admin")]
         public ActionResult Create()
         {
             ViewBag.KindId = new SelectList(db.KindsOfAccessories, "KindId", "Kind");
@@ -66,7 +66,7 @@ namespace Computer_Repair.Controllers
         }
 
         // GET: Accessories/Edit/5
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -101,6 +101,7 @@ namespace Computer_Repair.Controllers
         }
 
         // GET: Accessories/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
