@@ -1,5 +1,6 @@
-﻿@model IEnumerable<Computer_Repair.Models.Customers>
+﻿@model PagedList.IPagedList<Computer_Repair.Models.Customers>
 
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Customers";
 }
@@ -15,19 +16,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name_Surname)
+            @Html.DisplayNameFor(model => model.First().Name_Surname)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Adress)
+            @Html.DisplayNameFor(model => model.First().Address)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Telephone)
+            @Html.DisplayNameFor(model => model.First().Telephone)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Discount)
+            @Html.DisplayNameFor(model => model.First().Discount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Value)
+            @Html.DisplayNameFor(model => model.First().Value)
         </th>
         <th></th>
     </tr>
@@ -38,7 +39,7 @@
             @Html.DisplayFor(modelItem => item.Name_Surname)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Adress)
+            @Html.DisplayFor(modelItem => item.Address)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Telephone)
@@ -64,5 +65,5 @@
         </td>
     </tr>
 }
-
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 </table>

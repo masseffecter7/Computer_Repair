@@ -1,5 +1,6 @@
-﻿@model IEnumerable<Computer_Repair.Models.Orders>
+﻿@model PagedList.IPagedList<Computer_Repair.Models.Orders>
 
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Orders";
 }
@@ -21,31 +22,31 @@
             WorkerName
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateOfOrder)
+            @Html.DisplayNameFor(model => model.First().DateOfOrder)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateOfComplection)
+            @Html.DisplayNameFor(model => model.First().DateOfCompletion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ListOfAccessories)
+            @Html.DisplayNameFor(model => model.First().ListOfAccessories)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Payment)
+            @Html.DisplayNameFor(model => model.First().Prepaid)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MarkOfPayment)
+            @Html.DisplayNameFor(model => model.First().Submitted)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MarkOfComplection)
+            @Html.DisplayNameFor(model => model.First().Completed)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ListOfServices)
+            @Html.DisplayNameFor(model => model.First().ListOfServices)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TotalCost)
+            @Html.DisplayNameFor(model => model.First().TotalCost)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WarrantyPeriod)
+            @Html.DisplayNameFor(model => model.First().Guarantee)
         </th>
         <th><div style="width:135px"></div></th>
     </tr>
@@ -62,19 +63,19 @@
             @item.DateOfOrder.ToShortDateString()
         </td>
         <td>
-            @item.DateOfComplection.ToShortDateString()
+            @item.DateOfCompletion.ToShortDateString()
         </td>
         <th>
             @Html.DisplayFor(modelItem => item.ListOfAccessories)
         </th>
         <td>
-            @Html.DisplayFor(modelItem => item.Payment)
+            @Html.DisplayFor(modelItem => item.Prepaid)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.MarkOfPayment)
+            @Html.DisplayFor(modelItem => item.Submitted)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.MarkOfComplection)
+            @Html.DisplayFor(modelItem => item.Completed)
         </td>
         <th>
             @Html.DisplayFor(modelItem => item.ListOfServices)
@@ -83,7 +84,7 @@
             @Html.DisplayFor(modelItem => item.TotalCost)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.WarrantyPeriod)
+            @Html.DisplayFor(modelItem => item.Guarantee)
         </td>
         <td>
             @if (User.IsInRole("admin"))
@@ -100,6 +101,6 @@
         </td>
     </tr>
 }
-
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 </table>
     </div>

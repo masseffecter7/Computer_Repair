@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Computer_Repair.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Computer_Repair.Controllers
 {
@@ -16,10 +18,10 @@ namespace Computer_Repair.Controllers
 
         // GET: Orders
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
             var orders = db.Orders.Include(o => o.Customers).Include(o => o.Workers).Include(o => o.Accessorie).Include(o => o.Services);
-            return View(orders.ToList());
+            return View(orders.ToList().ToPagedList(page, 50));
         }
 
         // GET: Orders/Details/5
@@ -55,7 +57,7 @@ namespace Computer_Repair.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderId,DateOfOrder,DateOfComplection,ListOfAaccessories,CustomerId,Payment,MarkOfPayment,MarkOfComplection,ListOfServices,TotalCost,WarrantyPeriod,WorkerId")] Orders orders, string[] AccessorieId, string[] ServiceId)
+        public ActionResult Create([Bind(Include = "OrderId,DateOfOrder,DateOfCompletion,ListOfAaccessories,CustomerId,Prepaid,Submitted,Completed,ListOfServices,TotalCost,Guarantee,WorkerId")] Orders orders, string[] AccessorieId, string[] ServiceId)
         {
             string list1 = "";
             string list2 = "";
@@ -103,7 +105,7 @@ namespace Computer_Repair.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderId,DateOfOrder,DateOfComplection,ListOfAaccessories,CustomerId,Payment,MarkOfPayment,MarkOfComplection,ListOfServices,TotalCost,WarrantyPeriod,WorkerId")] Orders orders, string[] AccessorieId, string[] ServiceId)
+        public ActionResult Edit([Bind(Include = "OrderId,DateOfOrder,DateOfCompletion,ListOfAaccessories,CustomerId,Prepaid,Submitted,Completed,ListOfServices,TotalCost,Guarantee,WorkerId")] Orders orders, string[] AccessorieId, string[] ServiceId)
         {
             string list1 = "";
             string list2 = "";

@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Computer_Repair.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Computer_Repair.Controllers
 {
@@ -16,9 +18,9 @@ namespace Computer_Repair.Controllers
 
         // GET: Workers
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            return View(db.Workers.ToList());
+            return View(db.Workers.ToList().ToPagedList(page, 50));
         }
 
         // GET: Workers/Details/5

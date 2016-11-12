@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Computer_Repair.Models
 {
-    [Table("Услуги")]
+    [Table("Services")]
     public class Services
     {
         [Key]
@@ -17,7 +17,7 @@ namespace Computer_Repair.Models
         public string Service { get; set; }
 
         [Required]
-        public string Discription { get; set; }
+        public string Description { get; set; }
 
         [Required]
         public int Price { get; set; }

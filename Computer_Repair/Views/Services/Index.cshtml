@@ -1,5 +1,6 @@
-﻿@model IEnumerable<Computer_Repair.Models.Services>
+﻿@model PagedList.IPagedList<Computer_Repair.Models.Services>
 
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Services";
 }
@@ -15,13 +16,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Service)
+            @Html.DisplayNameFor(model => model.First().Service)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Discription)
+            @Html.DisplayNameFor(model => model.First().Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.First().Price)
         </th>
         <th></th>
     </tr>
@@ -32,7 +33,7 @@
             @Html.DisplayFor(modelItem => item.Service)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Discription)
+            @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)
@@ -52,5 +53,5 @@
         </td>
     </tr>
 }
-
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 </table>

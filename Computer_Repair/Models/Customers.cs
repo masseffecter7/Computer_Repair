@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace Computer_Repair.Models
 {
-    [Table("Заказчики")]
+    [Table("Customers")]
     public class Customers
     {
         [Key]
@@ -18,15 +18,13 @@ namespace Computer_Repair.Models
         public string Name_Surname { get; set; }
 
         [Required]
-        public string Adress { get; set; }
+        public string Address { get; set; }
 
         [Required]
         public string Telephone { get; set; }
 
         public bool Discount { get; set; }
 
-        //не смотря ни на что требует заполнить!!! БРЕД! ИСПРАВИТЬ...! 
-        //[DisplayFormat(ConvertEmptyStringToNull = true)]
         [DefaultValue("0")]
         public int Value { get; set; }
 

@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Computer_Repair.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace Computer_Repair.Controllers
 {
@@ -16,9 +18,9 @@ namespace Computer_Repair.Controllers
 
         // GET: Customers
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            return View(db.Customers.ToList());
+            return View(db.Customers.ToList().ToPagedList(page, 50));
         }
 
         // GET: Customers/Details/5
@@ -50,7 +52,7 @@ namespace Computer_Repair.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerId,Name_Surname,Adress,Telephone,Discount,Value")] Customers customers)
+        public ActionResult Create([Bind(Include = "CustomerId,Name_Surname,Address,Telephone,Discount,Value")] Customers customers)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +86,7 @@ namespace Computer_Repair.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerId,Name_Surname,Adress,Telephone,Discount,Value")] Customers customers)
+        public ActionResult Edit([Bind(Include = "CustomerId,Name_Surname,Address,Telephone,Discount,Value")] Customers customers)
         {
             if (ModelState.IsValid)
             {

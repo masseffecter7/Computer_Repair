@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Computer_Repair.Models
 {
-    [Table("Сотрудники")]
+    [Table("Workers")]
     public class Workers
     {
         [Key]

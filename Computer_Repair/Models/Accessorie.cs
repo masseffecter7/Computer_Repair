@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Computer_Repair.Models
 {
-    [Table("Комплектующие")]
+    [Table("Accessories")]
     public class Accessorie
     {
         [Key]
