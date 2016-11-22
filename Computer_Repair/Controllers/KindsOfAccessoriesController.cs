@@ -18,9 +18,12 @@ namespace Computer_Repair.Controllers
 
         // GET: KindsOfAccessories
         [Authorize]
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int page = 1, string KindFind = "")
         {
-            return View(db.KindsOfAccessories.ToList().ToPagedList(page, 50));
+            var kinds = from m in db.KindsOfAccessories
+                              where m.Kind.StartsWith(KindFind)
+                              select m;
+            return View(kinds.ToList().ToPagedList(page, 20));
         }
 
         // GET: KindsOfAccessories/Details/5

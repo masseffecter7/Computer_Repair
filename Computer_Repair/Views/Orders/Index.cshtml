@@ -13,8 +13,20 @@
         @Html.ActionLink("Create New", "Create")
     }
 </p>
+
+    @using (Html.BeginForm("Index", "Orders", FormMethod.Get))
+    {
+        <fieldset>
+            OrderId: @Html.TextBox("OrderFind", "")
+            <input type="submit" value="to find" />
+        </fieldset>
+    }
+
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().OrderId)
+        </th>
         <th>
             CustomerName
         </th>
@@ -53,6 +65,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <th>
+            @Html.DisplayFor(modelItem => item.OrderId)
+        </th>
         <td>
             @Html.DisplayFor(modelItem => item.Customers.Name_Surname)
         </td>

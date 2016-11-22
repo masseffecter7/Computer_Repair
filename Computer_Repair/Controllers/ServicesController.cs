@@ -18,9 +18,12 @@ namespace Computer_Repair.Controllers
 
         // GET: Services
         [Authorize]
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int page = 1, string ServiceFind = "")
         {
-            return View(db.Services.ToList().ToPagedList(page, 50));
+            var services = from m in db.Services
+                              where m.Service.StartsWith(ServiceFind)
+                              select m;
+            return View(services.ToList().ToPagedList(page, 20));
         }
 
         // GET: Services/Details/5

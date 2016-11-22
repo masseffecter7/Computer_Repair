@@ -18,9 +18,12 @@ namespace Computer_Repair.Controllers
 
         // GET: Workers
         [Authorize]
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int page = 1, string WorkerFind = "")
         {
-            return View(db.Workers.ToList().ToPagedList(page, 50));
+            var workers = from m in db.Workers
+                              where m.Surname.StartsWith(WorkerFind)
+                              select m;
+            return View(workers.ToList().ToPagedList(page, 20));
         }
 
         // GET: Workers/Details/5

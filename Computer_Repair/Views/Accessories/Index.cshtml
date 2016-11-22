@@ -14,6 +14,15 @@
     }
     
 </p>
+
+@using (Html.BeginForm("Index", "Accessories", FormMethod.Get))
+{
+    <fieldset>
+        AccessorieName: @Html.TextBox("AccessorieFind", "")
+        <input type="submit" value="to find" />
+    </fieldset>
+}
+
 <table class="table">
     <tr>
         <th>

@@ -18,10 +18,12 @@ namespace Computer_Repair.Controllers
 
         // GET: Accessories
         [Authorize]
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int page = 1, string AccessorieFind = "")
         {
-            var accessories = db.Accessories.Include(a => a.KindsOfAccessories);
-            return View(accessories.ToList().ToPagedList(page, 50));
+            var accessories = from m in db.Accessories.Include(a => a.KindsOfAccessories)
+                          where m.AccessorieName.StartsWith(AccessorieFind)
+                          select m;
+            return View(accessories.ToList().ToPagedList(page, 20));
         }
 
         // GET: Accessories/Details/5

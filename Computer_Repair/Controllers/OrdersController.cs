@@ -18,10 +18,12 @@ namespace Computer_Repair.Controllers
 
         // GET: Orders
         [Authorize]
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int page = 1, string OrderFind = "")
         {
-            var orders = db.Orders.Include(o => o.Customers).Include(o => o.Workers).Include(o => o.Accessorie).Include(o => o.Services);
-            return View(orders.ToList().ToPagedList(page, 50));
+            var orders = from m in db.Orders.Include(o => o.Customers).Include(o => o.Workers).Include(o => o.Accessorie).Include(o => o.Services)
+                              where m.OrderId.ToString().StartsWith(OrderFind)
+                              select m;
+            return View(orders.ToList().ToPagedList(page, 20));
         }
 
         // GET: Orders/Details/5

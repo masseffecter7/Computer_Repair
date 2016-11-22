@@ -13,6 +13,15 @@
         @Html.ActionLink("Create New", "Create")
     }
 </p>
+
+@using (Html.BeginForm("Index", "Workers", FormMethod.Get))
+{
+    <fieldset>
+        Surname: @Html.TextBox("WorkerFind", "")
+        <input type="submit" value="to find" />
+    </fieldset>
+}
+
 <table class="table">
     <tr>
         <th>
