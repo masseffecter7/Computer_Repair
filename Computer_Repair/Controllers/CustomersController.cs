@@ -18,12 +18,32 @@ namespace Computer_Repair.Controllers
 
         // GET: Customers
         [Authorize]
-        public ActionResult Index(int page = 1, string CustomerFind = "")
+        public ActionResult Index(int? page, string currentFilter, string CustomerFind = "")
         {
-            var customers = from m in db.Customers
-                          where m.Name_Surname.StartsWith(CustomerFind)
-                          select m;
-            return View(customers.ToList().ToPagedList(page, 20));
+            if (CustomerFind == "")
+            {
+                CustomerFind = currentFilter;
+            }
+            else
+            {
+                page = 1;
+            }
+            ViewBag.CurrentFilter = CustomerFind;
+
+            if (CustomerFind != null)
+            {
+                var customers = from m in db.Customers
+                                where m.Name_Surname.StartsWith(CustomerFind)
+                                select m;
+                return View(customers.ToList().ToPagedList(page ?? 1, 20));
+            }
+            else
+            {
+                var customers = from m in db.Customers
+                                select m;
+                return View(customers.ToList().ToPagedList(page ?? 1, 20));
+            }
+            
         }
 
         // GET: Customers/Details/5

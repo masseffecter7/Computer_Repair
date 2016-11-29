@@ -17,7 +17,7 @@
 @using (Html.BeginForm("Index", "Services", FormMethod.Get))
 {
     <fieldset>
-        Service: @Html.TextBox("ServiceFind", "")
+        Service: @Html.TextBox("ServiceFind", ViewBag.CurrentFilter as string)
         <input type="submit" value="to find" />
     </fieldset>
 }
@@ -62,5 +62,5 @@
         </td>
     </tr>
 }
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
 </table>

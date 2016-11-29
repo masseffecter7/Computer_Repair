@@ -18,12 +18,31 @@ namespace Computer_Repair.Controllers
 
         // GET: Accessories
         [Authorize]
-        public ActionResult Index(int page = 1, string AccessorieFind = "")
+        public ActionResult Index(int? page, string currentFilter, string AccessorieFind = "")
         {
-            var accessories = from m in db.Accessories.Include(a => a.KindsOfAccessories)
-                          where m.AccessorieName.StartsWith(AccessorieFind)
-                          select m;
-            return View(accessories.ToList().ToPagedList(page, 20));
+            if (AccessorieFind == "")
+            {
+                AccessorieFind = currentFilter;
+            }
+            else
+            {
+                page = 1;
+            }
+            ViewBag.CurrentFilter = AccessorieFind;
+
+            if(AccessorieFind != null)
+            {
+                var accessories = from m in db.Accessories.Include(a => a.KindsOfAccessories)
+                                  where m.AccessorieName.StartsWith(AccessorieFind)
+                                  select m;
+                return View(accessories.ToList().ToPagedList(page ?? 1, 20));
+            }
+            else
+            {
+                var accessories = from m in db.Accessories.Include(a => a.KindsOfAccessories)
+                                  select m;
+                return View(accessories.ToList().ToPagedList(page ?? 1, 20));
+            }
         }
 
         // GET: Accessories/Details/5

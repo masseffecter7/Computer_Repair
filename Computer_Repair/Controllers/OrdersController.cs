@@ -18,12 +18,32 @@ namespace Computer_Repair.Controllers
 
         // GET: Orders
         [Authorize]
-        public ActionResult Index(int page = 1, string OrderFind = "")
+        public ActionResult Index(int? page, string currentFilter, string OrderFind = "")
         {
-            var orders = from m in db.Orders.Include(o => o.Customers).Include(o => o.Workers).Include(o => o.Accessorie).Include(o => o.Services)
-                              where m.OrderId.ToString().StartsWith(OrderFind)
-                              select m;
-            return View(orders.ToList().ToPagedList(page, 20));
+            if (OrderFind == "")
+            {
+                OrderFind = currentFilter;
+            }
+            else
+            {
+                page = 1;
+            }
+            ViewBag.CurrentFilter = OrderFind;
+
+            if (OrderFind != null)
+            {
+                var orders = from m in db.Orders.Include(o => o.Customers).Include(o => o.Workers).Include(o => o.Accessorie).Include(o => o.Services)
+                             where m.OrderId.ToString().StartsWith(OrderFind)
+                             select m;
+                return View(orders.ToList().ToPagedList(page ?? 1, 20));
+            }
+            else
+            {
+                var orders = from m in db.Orders.Include(o => o.Customers).Include(o => o.Workers).Include(o => o.Accessorie).Include(o => o.Services)
+                             select m;
+                return View(orders.ToList().ToPagedList(page ?? 1, 20));
+            }
+            
         }
 
         // GET: Orders/Details/5

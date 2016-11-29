@@ -18,12 +18,32 @@ namespace Computer_Repair.Controllers
 
         // GET: KindsOfAccessories
         [Authorize]
-        public ActionResult Index(int page = 1, string KindFind = "")
+        public ActionResult Index(int? page, string currentFilter, string KindFind = "")
         {
-            var kinds = from m in db.KindsOfAccessories
-                              where m.Kind.StartsWith(KindFind)
-                              select m;
-            return View(kinds.ToList().ToPagedList(page, 20));
+            if (KindFind == "")
+            {
+                KindFind = currentFilter;
+            }
+            else
+            {
+                page = 1;
+            }
+            ViewBag.CurrentFilter = KindFind;
+
+            if (KindFind != null)
+            {
+                var kinds = from m in db.KindsOfAccessories
+                            where m.Kind.StartsWith(KindFind)
+                            select m;
+                return View(kinds.ToList().ToPagedList(page ?? 1, 20));
+            }
+            else
+            {
+                var kinds = from m in db.KindsOfAccessories
+                            select m;
+                return View(kinds.ToList().ToPagedList(page ?? 1, 20));
+            }
+            
         }
 
         // GET: KindsOfAccessories/Details/5

@@ -18,12 +18,32 @@ namespace Computer_Repair.Controllers
 
         // GET: Services
         [Authorize]
-        public ActionResult Index(int page = 1, string ServiceFind = "")
+        public ActionResult Index(int? page, string currentFilter, string ServiceFind = "")
         {
-            var services = from m in db.Services
-                              where m.Service.StartsWith(ServiceFind)
-                              select m;
-            return View(services.ToList().ToPagedList(page, 20));
+            if (ServiceFind == "")
+            {
+                ServiceFind = currentFilter;
+            }
+            else
+            {
+                page = 1;
+            }
+            ViewBag.CurrentFilter = ServiceFind;
+
+            if (ServiceFind != null)
+            {
+                var services = from m in db.Services
+                               where m.Service.StartsWith(ServiceFind)
+                               select m;
+                return View(services.ToList().ToPagedList(page ?? 1, 20));
+            }
+            else
+            {
+                var services = from m in db.Services
+                               select m;
+                return View(services.ToList().ToPagedList(page ?? 1, 20));
+            }
+
         }
 
         // GET: Services/Details/5

@@ -18,12 +18,32 @@ namespace Computer_Repair.Controllers
 
         // GET: Workers
         [Authorize]
-        public ActionResult Index(int page = 1, string WorkerFind = "")
+        public ActionResult Index(int? page, string currentFilter, string WorkerFind = "")
         {
-            var workers = from m in db.Workers
+            if (WorkerFind == "")
+            {
+                WorkerFind = currentFilter;
+            }
+            else
+            {
+                page = 1;
+            }
+            ViewBag.CurrentFilter = WorkerFind;
+
+            if (WorkerFind != null)
+            {
+                var workers = from m in db.Workers
                               where m.Surname.StartsWith(WorkerFind)
                               select m;
-            return View(workers.ToList().ToPagedList(page, 20));
+                return View(workers.ToList().ToPagedList(page ?? 1, 20));
+            }
+            else
+            {
+                var workers = from m in db.Workers
+                              select m;
+                return View(workers.ToList().ToPagedList(page ?? 1, 20));
+            }
+            
         }
 
         // GET: Workers/Details/5
