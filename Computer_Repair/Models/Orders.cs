@@ -23,12 +23,11 @@ namespace Computer_Repair.Models
 
         [Required]
         public int CustomerId { get; set; } 
-
         public Customers Customers { get; set; } 
 
         [Required]
-        public string ListOfAccessories { get; set; }
-        public Accessorie Accessorie { get; set; }   
+        public int AccessorieId { get; set; }
+        public Accessories Accessories { get; set; }   
 
         [Required]
         public int Prepaid { get; set; }
@@ -43,12 +42,11 @@ namespace Computer_Repair.Models
         public string Guarantee { get; set; }
 
         [Required]
-        public string ListOfServices { get; set; }
+        public int ServiceId { get; set; }
         public Services Services { get; set; }      
 
         [Required]
         public int WorkerId { get; set; }     
-
         public Workers Workers { get; set; }
     }
 }

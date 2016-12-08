@@ -1,4 +1,4 @@
-﻿@model Computer_Repair.Models.Accessorie
+﻿@model Computer_Repair.Models.Accessories
 
 @{
     ViewBag.Title = "Details";
@@ -7,15 +7,15 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Accessorie</h4>
+    <h4>Accessories</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.KindsOfAccessories.KindId)
+            @Html.DisplayNameFor(model => model.KindsOfAccessories.Kind)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.KindsOfAccessories.KindId)
+            @Html.DisplayFor(model => model.KindsOfAccessories.Kind)
         </dd>
 
         <dt>
@@ -24,6 +24,38 @@
 
         <dd>
             @Html.DisplayFor(model => model.AccessorieName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Firm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Firm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Characteristics)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Characteristics)
         </dd>
 
         <dt>

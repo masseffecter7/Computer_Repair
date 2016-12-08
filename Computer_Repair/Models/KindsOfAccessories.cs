@@ -19,6 +19,6 @@ namespace Computer_Repair.Models
         [Required]
         public string Description { get; set; }
 
-        public List<Accessorie> Accessories { get; set; }
+        public List<Accessories> Accessories { get; set; }
     }
 }

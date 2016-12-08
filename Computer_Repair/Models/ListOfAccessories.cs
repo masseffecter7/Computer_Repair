@@ -13,7 +13,7 @@ namespace Computer_Repair.Models
         [Key]
         public int ListOfaccessoriesId { get; set; }
 
-        public Accessorie Accessorie { get; set; }
+        public Accessories Accessorie { get; set; }
 
         public Orders Orders { get; set;}
     }

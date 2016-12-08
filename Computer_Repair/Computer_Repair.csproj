@@ -215,7 +215,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Accessorie.cs" />
+    <Compile Include="Models\Accessories.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppDbInitializer.cs" />
     <Compile Include="Models\Computer_RepairContext.cs" />
@@ -243,6 +243,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Resources\background.bmp" />
     <None Include="Properties\luxfon.com_10571.jpg" />
     <None Include="Properties\slide5.png" />
@@ -300,11 +301,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Accessories\Create.cshtml" />
-    <Content Include="Views\Accessories\Delete.cshtml" />
-    <Content Include="Views\Accessories\Details.cshtml" />
-    <Content Include="Views\Accessories\Edit.cshtml" />
-    <Content Include="Views\Accessories\Index.cshtml" />
     <Content Include="Views\KindsOfAccessories\Create.cshtml" />
     <Content Include="Views\KindsOfAccessories\Delete.cshtml" />
     <Content Include="Views\KindsOfAccessories\Details.cshtml" />
@@ -330,6 +326,11 @@
     <Content Include="Views\Workers\Details.cshtml" />
     <Content Include="Views\Workers\Edit.cshtml" />
     <Content Include="Views\Workers\Index.cshtml" />
+    <Content Include="Views\Accessories\Create.cshtml" />
+    <Content Include="Views\Accessories\Delete.cshtml" />
+    <Content Include="Views\Accessories\Details.cshtml" />
+    <Content Include="Views\Accessories\Edit.cshtml" />
+    <Content Include="Views\Accessories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,8 +1,8 @@
-﻿@model PagedList.IPagedList<Computer_Repair.Models.Accessorie>
+﻿@model PagedList.IPagedList<Computer_Repair.Models.Accessories>
 
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "Accessorie";
+    ViewBag.Title = "Accessories";
 }
 
 <h2>Accessorie</h2>
@@ -12,7 +12,7 @@
     {
         @Html.ActionLink("Create New", "Create")
     }
-    
+
 </p>
 
 @using (Html.BeginForm("Index", "Accessories", FormMethod.Get))
@@ -22,14 +22,25 @@
         <input type="submit" value="to find" />
     </fieldset>
 }
-
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().KindsOfAccessories.KindId)
+            @Html.DisplayNameFor(model => model.First().KindsOfAccessories.Kind)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().AccessorieName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Firm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().ReleaseDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Characteristics)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().Description)
@@ -43,10 +54,22 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.KindsOfAccessories.KindId)
+            @Html.DisplayFor(modelItem => item.KindsOfAccessories.Kind)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.AccessorieName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Firm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReleaseDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Characteristics)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)
@@ -57,16 +80,16 @@
         <td>
             @if (User.IsInRole("admin"))
             {
-                @Html.ActionLink("Edit", "Edit", new { id = item.AccessorieId }) 
+                @Html.ActionLink("Edit", "Edit", new { id = item.AccessorieId })
             }
             @Html.Display("&nbsp;") |
-            @Html.ActionLink("Details", "Details", new { id=item.AccessorieId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.AccessorieId }) |
 
             @if (User.IsInRole("admin"))
             {
                 @Html.ActionLink("Delete", "Delete", new { id = item.AccessorieId })
             }
-            
+
         </td>
     </tr>
 }

@@ -17,7 +17,7 @@
     @using (Html.BeginForm("Index", "Orders", FormMethod.Get))
     {
         <fieldset>
-            OrderId: @Html.TextBox("OrderFind", ViewBag.CurrentFilter as string)
+            Id: @Html.TextBox("OrderFind", ViewBag.CurrentFilter as string)
             <input type="submit" value="to find" />
         </fieldset>
     }
@@ -25,7 +25,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().OrderId)
+            Id
         </th>
         <th>
             CustomerName
@@ -40,7 +40,7 @@
             @Html.DisplayNameFor(model => model.First().DateOfCompletion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().ListOfAccessories)
+            Accessorie
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().Prepaid)
@@ -52,7 +52,7 @@
             @Html.DisplayNameFor(model => model.First().Completed)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().ListOfServices)
+            Service
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().TotalCost)
@@ -80,8 +80,8 @@
         <td>
             @item.DateOfCompletion.ToShortDateString()
         </td>
-        <th>
-            @Html.DisplayFor(modelItem => item.ListOfAccessories)
+        <th style="font-weight:100">
+            @Html.DisplayFor(modelItem => item.Accessories.AccessorieName)
         </th>
         <td>
             @Html.DisplayFor(modelItem => item.Prepaid)
@@ -92,8 +92,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.Completed)
         </td>
-        <th>
-            @Html.DisplayFor(modelItem => item.ListOfServices)
+        <th style="font-weight:100">
+            @Html.DisplayFor(modelItem => item.Services.Service)
         </th>
         <td>
             @Html.DisplayFor(modelItem => item.TotalCost)

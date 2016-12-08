@@ -24,16 +24,20 @@ DECLARE @Symbol CHAR(52)= 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 		@NameLimit INT,
 		@RowCount INT,
 		@NumberKinds int,
-		@NumberAccessores int,
+		@NumberAccessories int,
 		@NumberCustomers int,
 		@NumberWorkers int,
 		@NumberServices int,
 		@NumberOrders int,
-		@AccessorieName nvarchar(50)
+		@AccessorieName nvarchar(50),
+		@Firm nvarchar(50),
+		@Country nvarchar (50),
+		@ReleaseDate date,
+		@Characteristics nvarchar (50)
 
 
 		SET @NumberKinds = 1000
-		SET @NumberAccessores = 10000
+		SET @NumberAccessories = 10000
 		SET @NumberCustomers = 1000
 		SET @NumberWorkers = 1000
 		SET @NumberServices = 1000
@@ -43,7 +47,7 @@ DECLARE @Symbol CHAR(52)= 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 
 BEGIN TRAN
 
--- услуги(100)
+-- услуги(1000)
 SELECT @i=0 FROM [Services] WITH (TABLOCKX) WHERE 1=0
 
 
@@ -54,7 +58,7 @@ SELECT @i=0 FROM [Services] WITH (TABLOCKX) WHERE 1=0
 		
 		SET @Service=''
 		Set @Description=''
-		SET @NameLimit=5+RAND()*15 -- имя от 5 до 50 символов
+		SET @NameLimit=5+RAND()*10 -- имя от 5 до 50 символов
 		SET @i=1
 
 		WHILE @i<=@NameLimit
@@ -74,7 +78,7 @@ SELECT @i=0 FROM [Services] WITH (TABLOCKX) WHERE 1=0
 	END
 
 
--- виды комплектующих(100)
+-- виды комплектующих(1000)
 SELECT @i=0 FROM dbo.KindsOfAccessories WITH (TABLOCKX) WHERE 1=0
 SET @RowCount=1
 	
@@ -83,7 +87,7 @@ SET @RowCount=1
 		
 		SET @Kind=''
 		SET @Description=''
-		SET @NameLimit=5+RAND()*15 -- им¤ от 5 до 20 символов
+		SET @NameLimit=5+RAND()*10 -- им¤ от 5 до 20 символов
 			
 
 		SET @i=1
@@ -106,7 +110,7 @@ SET @RowCount=1
 
 
 
--- заказчики (100)
+-- заказчики (1000)
 SELECT @i=0 FROM Customers WITH (TABLOCKX) WHERE 1=0
 SET @RowCount=1
 	
@@ -142,14 +146,20 @@ SET @RowCount=1
 
 SELECT @i=0 FROM Accessories WITH (TABLOCKX) WHERE 1=0
 SET @RowCount=1
-	WHILE @RowCount<=@NumberKinds
+	WHILE @RowCount<=@NumberAccessories
 	BEGIN
 
 		SET @AccessorieName=''
-		SET @NameLimit=5+RAND()*15 -- им¤ от 5 до 20 символов
+		SET @NameLimit=5+RAND()*10 -- им¤ от 5 до 20 символов
+		SET @Firm=''
+		SET @NameLimit=5+RAND()*10 -- им¤ от 5 до 20 символов
+		SET @Country=''
+		SET @NameLimit=5+RAND()*10 -- им¤ от 5 до 20 символов
+		SET @Characteristics=''
+		SET @NameLimit=5+RAND()*10 -- им¤ от 5 до 20 символов
 		SET @Description=''
-		SET @NameLimit=5+RAND()*15 -- им¤ от 5 до 20 символов
-			
+		SET @NameLimit=5+RAND()*10 -- им¤ от 5 до 20 символов
+
 		SET @i=1
 
 		WHILE @i<=@NameLimit
@@ -158,12 +168,20 @@ SET @RowCount=1
 			SET @Position=RAND()*11
 			SET @AccessorieName = @AccessorieName + SUBSTRING(@Symbol, @Position, 1)
 			SET @Position=RAND()*11
+			SET @Firm = @Firm + SUBSTRING(@Symbol, @Position, 1)
+			SET @Position=RAND()*11
+			SET @Country = @Country + SUBSTRING(@Symbol, @Position, 1)
+			SET @Position=RAND()*11
+			SET @Characteristics = @Characteristics + SUBSTRING(@Symbol, @Position, 1)
+			SET @Position=RAND()*11
 			SET @Description = @Description + SUBSTRING(@Symbol, @Position, 1)
+						
 			SET @i=@i+1
 		END
 
-		INSERT INTO Accessories (KindID, AccessorieName, [Description], Price) 
-		SELECT CAST( (1+RAND()*(@NumberKinds-1)) as int), @AccessorieName, @Description, RAND()*500
+		SET @ReleaseDate=dateadd(day,-RAND()*15000,GETDATE())
+		INSERT INTO Accessories (KindID, AccessorieName, Firm, Country, ReleaseDate, Characteristics, [Description], Price) 
+		SELECT CAST( (1+RAND()*(@NumberKinds-1)) as int), @AccessorieName, @Firm, @Country, @ReleaseDate, @Characteristics, @Description, RAND()*500
 		
 		SET @RowCount +=1
 	END
@@ -202,7 +220,7 @@ SET @RowCount=1
 	
 	SET @RowCount=1
 
-	WHILE @RowCount<=@NumberWorkers
+	WHILE @RowCount<=@NumberOrders
 	BEGIN
 	
 		SET @Guarantee=''
@@ -220,8 +238,8 @@ SET @RowCount=1
 
 		SET @DateOfOrder=dateadd(day,-RAND()*15000,GETDATE())
 		SET @DateOfCompletion=dateadd(day,-RAND()*15000,GETDATE())
-		INSERT INTO dbo.Orders (DateOfOrder, DateOfCompletion, CustomerID, ListOfAccessories, Prepaid, Submitted, Completed, TotalCost, Guarantee, ListOfServices, WorkerID) 
-		SELECT @DateOfOrder, @DateOfCompletion, CAST( (1+RAND()*(@NumberCustomers-1)) as int), ROUND(RAND()*1000, 0), RAND()*300, ROUND(RAND()*1,0), ROUND(RAND()*1,0), RAND()*500, @Guarantee, ROUND(RAND()*1000, 0), CAST( (1+RAND()*(@NumberWorkers-1)) as int)
+		INSERT INTO dbo.Orders (DateOfOrder, DateOfCompletion, CustomerID, AccessorieId, Prepaid, Submitted, Completed, TotalCost, Guarantee, ServiceId, WorkerID) 
+		SELECT @DateOfOrder, @DateOfCompletion, CAST( (1+RAND()*(@NumberCustomers-1)) as int), CAST( (1+RAND()*(@NumberAccessories-1)) as int), RAND()*300, ROUND(RAND()*1,0), ROUND(RAND()*1,0), RAND()*500, @Guarantee, CAST( (1+RAND()*(@NumberServices-1)) as int), CAST( (1+RAND()*(@NumberWorkers-1)) as int)
 		
 		SET @RowCount +=1
 	END
