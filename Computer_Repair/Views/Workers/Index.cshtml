@@ -7,11 +7,14 @@
 
 <h2>Workers</h2>
 
+@Html.ActionLink("Show staff who do busy", "Busy")
+
 <p>
     @if (User.IsInRole("admin"))
     {
         @Html.ActionLink("Create New", "Create")
     }
+    
 </p>
 
 @using (Html.BeginForm("Index", "Workers", FormMethod.Get))

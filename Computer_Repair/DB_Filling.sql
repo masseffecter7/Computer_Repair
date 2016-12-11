@@ -14,13 +14,11 @@ DECLARE @Symbol CHAR(52)= 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 		@Name_Surname nvarchar(50),
 		@Addres nvarchar(50),
 		@Telephone nvarchar(50),
-		@Discount bit,
 		@Value int,
 		@Name nvarchar(50),
 		@Surname nvarchar(50),
 		@DateOfOrder date,
 		@DateOfCompletion date,
-		@Guarantee nvarchar(50),
 		@NameLimit INT,
 		@RowCount INT,
 		@NumberKinds int,
@@ -136,7 +134,7 @@ SET @RowCount=1
 			SET @i=@i+1
 		END
 
-		INSERT INTO Customers (Name_Surname, Address, Telephone, Discount, Value) 
+		INSERT INTO Customers (Name_Surname, [Address], Telephone, Discount, Value) 
 		SELECT @Name_Surname, @Addres, @Telephone, ROUND(RAND()*1,0), RAND()*500
 		
 
@@ -180,8 +178,8 @@ SET @RowCount=1
 		END
 
 		SET @ReleaseDate=dateadd(day,-RAND()*15000,GETDATE())
-		INSERT INTO Accessories (KindID, AccessorieName, Firm, Country, ReleaseDate, Characteristics, [Description], Price) 
-		SELECT CAST( (1+RAND()*(@NumberKinds-1)) as int), @AccessorieName, @Firm, @Country, @ReleaseDate, @Characteristics, @Description, RAND()*500
+		INSERT INTO Accessories (KindID, AccessorieName, Firm, Country, ReleaseDate, Characteristics, Guarantee, [Description], Price) 
+		SELECT CAST( (1+RAND()*(@NumberKinds-1)) as int), @AccessorieName, @Firm, @Country, @ReleaseDate, @Characteristics, ROUND(RAND()*10,0), @Description, RAND()*500
 		
 		SET @RowCount +=1
 	END
@@ -223,7 +221,6 @@ SET @RowCount=1
 	WHILE @RowCount<=@NumberOrders
 	BEGIN
 	
-		SET @Guarantee=''
 		SET @NameLimit=0+RAND()*2 
 				
 		SET @i=1
@@ -232,14 +229,13 @@ SET @RowCount=1
 		BEGIN
 
 			SET @Position=RAND()*11
-			SET @Guarantee = @Guarantee + SUBSTRING(@SymbolTelephone, @Position, 1)
 			SET @i=@i+1
 		END
 
 		SET @DateOfOrder=dateadd(day,-RAND()*15000,GETDATE())
 		SET @DateOfCompletion=dateadd(day,-RAND()*15000,GETDATE())
 		INSERT INTO dbo.Orders (DateOfOrder, DateOfCompletion, CustomerID, AccessorieId, Prepaid, Submitted, Completed, TotalCost, Guarantee, ServiceId, WorkerID) 
-		SELECT @DateOfOrder, @DateOfCompletion, CAST( (1+RAND()*(@NumberCustomers-1)) as int), CAST( (1+RAND()*(@NumberAccessories-1)) as int), RAND()*300, ROUND(RAND()*1,0), ROUND(RAND()*1,0), RAND()*500, @Guarantee, CAST( (1+RAND()*(@NumberServices-1)) as int), CAST( (1+RAND()*(@NumberWorkers-1)) as int)
+		SELECT @DateOfOrder, @DateOfCompletion, CAST( (1+RAND()*(@NumberCustomers-1)) as int), CAST( (1+RAND()*(@NumberAccessories-1)) as int), ROUND(RAND()*1,0), ROUND(RAND()*1,0), ROUND(RAND()*1,0), RAND()*500, ROUND(RAND()*10,0), CAST( (1+RAND()*(@NumberServices-1)) as int), CAST( (1+RAND()*(@NumberWorkers-1)) as int)
 		
 		SET @RowCount +=1
 	END

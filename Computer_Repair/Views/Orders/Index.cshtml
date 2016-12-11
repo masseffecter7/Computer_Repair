@@ -17,9 +17,18 @@
     @using (Html.BeginForm("Index", "Orders", FormMethod.Get))
     {
         <fieldset>
-            Id: @Html.TextBox("OrderFind", ViewBag.CurrentFilter as string)
-            <input type="submit" value="to find" />
+            Customer: @Html.TextBox("CustomerFind", ViewBag.CurrentFilter1 as string)
         </fieldset>
+        <br>
+        <fieldset>
+            Accessorie: @Html.TextBox("AccessorieFind", ViewBag.CurrentFilter2 as string)
+        </fieldset>
+        <br>
+        <fieldset>
+            Prepaid (uncheck to display all records): @Html.CheckBox("PrepaidFind", ViewBag.CurrentFilter3 as string)
+        </fieldset>
+        <br>
+        <input type="submit" value="to find" />
     }
 
 <table class="table">
@@ -116,6 +125,6 @@
         </td>
     </tr>
 }
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter1 = ViewBag.CurrentFilter1, currentFilter2 = ViewBag.CurrentFilter2, currentFilter3 = ViewBag.CurrentFilter3 }))
 </table>
     </div>

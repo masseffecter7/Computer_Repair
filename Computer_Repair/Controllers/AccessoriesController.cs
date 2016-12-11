@@ -17,34 +17,36 @@ namespace Computer_Repair.Controllers
         private Computer_RepairContext db = new Computer_RepairContext();
 
         // GET: Accessories
-        public ActionResult Index(int? page, string currentFilter, string AccessorieFind = "")
+        [Authorize]
+        public ActionResult Index(int? page, string currentFilter1 = "", string currentFilter2 = "", string currentFilter3 = "", string CountryFind = "", string GuaranteeFind = "", string KindFind = "")
         {
-            if (AccessorieFind == "")
+            if (GuaranteeFind == "" && CountryFind == "" && KindFind == "")
             {
-                AccessorieFind = currentFilter;
+                GuaranteeFind = currentFilter1;
+                CountryFind = currentFilter2;
+                KindFind = currentFilter3;
             }
             else
             {
                 page = 1;
             }
-            ViewBag.CurrentFilter = AccessorieFind;
+            ViewBag.CurrentFilter1 = GuaranteeFind;
+            ViewBag.CurrentFilter2 = CountryFind;
+            ViewBag.CurrentFilter3 = KindFind;
 
-            if (AccessorieFind != null)
-            {
-                var accessories = from m in db.Accessories.Include(a => a.KindsOfAccessories)
-                                  where m.AccessorieName.StartsWith(AccessorieFind)
-                                  select m;
-                return View(accessories.ToList().ToPagedList(page ?? 1, 20));
-            }
-            else
-            {
-                var accessories = from m in db.Accessories.Include(a => a.KindsOfAccessories)
-                                  select m;
-                return View(accessories.ToList().ToPagedList(page ?? 1, 20));
-            }
+            var accessories = from m in db.Accessories.Include(a => a.KindsOfAccessories)
+                              select m;
+            if (GuaranteeFind != "")
+                accessories = accessories.Include(a => a.KindsOfAccessories).Where(m => m.Guarantee.StartsWith(GuaranteeFind));
+            if (CountryFind != "")
+                accessories = accessories.Include(a => a.KindsOfAccessories).Where(m => m.Country.StartsWith(CountryFind));
+            if (KindFind != "")
+                accessories = accessories.Include(a => a.KindsOfAccessories).Where(m => m.KindsOfAccessories.Kind.StartsWith(KindFind));
+            return View(accessories.ToList().ToPagedList(page ?? 1, 20));
         }
 
         // GET: Accessories/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -60,6 +62,7 @@ namespace Computer_Repair.Controllers
         }
 
         // GET: Accessories/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.KindId = new SelectList(db.KindsOfAccessories, "KindId", "Kind");
@@ -67,11 +70,10 @@ namespace Computer_Repair.Controllers
         }
 
         // POST: Accessories/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AccessorieId,KindId,AccessorieName,Firm,Country,ReleaseDate,Characteristics,Description,Price")] Accessories accessories)
+        public ActionResult Create([Bind(Include = "AccessorieId,KindId,AccessorieName,Firm,Country,ReleaseDate,Characteristics,Guarantee,Description,Price")] Accessories accessories)
         {
             if (ModelState.IsValid)
             {
@@ -85,6 +87,7 @@ namespace Computer_Repair.Controllers
         }
 
         // GET: Accessories/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -101,11 +104,10 @@ namespace Computer_Repair.Controllers
         }
 
         // POST: Accessories/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AccessorieId,KindId,AccessorieName,Firm,Country,ReleaseDate,Characteristics,Description,Price")] Accessories accessories)
+        public ActionResult Edit([Bind(Include = "AccessorieId,KindId,AccessorieName,Firm,Country,ReleaseDate,Characteristics,Guarantee,Description,Price")] Accessories accessories)
         {
             if (ModelState.IsValid)
             {
@@ -118,6 +120,7 @@ namespace Computer_Repair.Controllers
         }
 
         // GET: Accessories/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -133,6 +136,7 @@ namespace Computer_Repair.Controllers
         }
 
         // POST: Accessories/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

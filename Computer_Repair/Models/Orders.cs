@@ -29,8 +29,7 @@ namespace Computer_Repair.Models
         public int AccessorieId { get; set; }
         public Accessories Accessories { get; set; }   
 
-        [Required]
-        public int Prepaid { get; set; }
+        public bool Prepaid { get; set; }
 
         public bool Submitted { get; set; }
         

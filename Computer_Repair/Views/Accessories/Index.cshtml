@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = "Accessories";
 }
-
+<div style="position: absolute; left: 9%; width: auto">
 <h2>Accessorie</h2>
 
 <p>
@@ -12,86 +12,103 @@
     {
         @Html.ActionLink("Create New", "Create")
     }
-
 </p>
+
 
 @using (Html.BeginForm("Index", "Accessories", FormMethod.Get))
 {
     <fieldset>
-        AccessorieName: @Html.TextBox("AccessorieFind", ViewBag.CurrentFilter as string)
-        <input type="submit" value="to find" />
-    </fieldset>
+        Guarantee: @Html.TextBox("GuaranteeFind", ViewBag.CurrentFilter1 as string)
+        </fieldset>
+        <br>
+            <fieldset>
+                Country: @Html.TextBox("CountryFind", ViewBag.CurrentFilter2 as string)
+                </fieldset>
+                <br>
+                    <fieldset>
+                        Kind: @Html.TextBox("KindFind", ViewBag.CurrentFilter3 as string)
+                    </fieldset>
+                    <br>
+                    <input type="submit" value="to find" />
 }
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.First().KindsOfAccessories.Kind)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().AccessorieName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Firm)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Country)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().ReleaseDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Characteristics)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Price)
-        </th>
-        <th></th>
-    </tr>
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().KindsOfAccessories.Kind)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().AccessorieName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Firm)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Country)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().ReleaseDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Characteristics)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Guarantee)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Description)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Price)
+                            </th>
+                            <th></th>
+                        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.KindsOfAccessories.Kind)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccessorieName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Firm)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Country)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReleaseDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Characteristics)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @if (User.IsInRole("admin"))
-            {
-                @Html.ActionLink("Edit", "Edit", new { id = item.AccessorieId })
-            }
-            @Html.Display("&nbsp;") |
-            @Html.ActionLink("Details", "Details", new { id = item.AccessorieId }) |
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.KindsOfAccessories.Kind)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AccessorieName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Firm)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Country)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Characteristics)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Guarantee)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </td>
+                                <td>
+                                    @if (User.IsInRole("admin"))
+                                    {
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.AccessorieId })
+                                    }
+                                    @Html.Display("&nbsp;") |
+                                    @Html.ActionLink("Details", "Details", new { id = item.AccessorieId }) |
 
-            @if (User.IsInRole("admin"))
-            {
-                @Html.ActionLink("Delete", "Delete", new { id = item.AccessorieId })
-            }
+                                    @if (User.IsInRole("admin"))
+                                    {
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.AccessorieId })
+                                    }
 
-        </td>
-    </tr>
-}
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
-</table>
+                                </td>
+                            </tr>
+                        }
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter1 = ViewBag.CurrentFilter1, currentFilter2 = ViewBag.CurrentFilter2, currentFilter3 = ViewBag.CurrentFilter3 }))
+                    </table>
+</div>

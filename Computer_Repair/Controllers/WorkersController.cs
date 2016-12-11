@@ -70,8 +70,6 @@ namespace Computer_Repair.Controllers
         }
 
         // POST: Workers/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -104,8 +102,6 @@ namespace Computer_Repair.Controllers
         }
 
         // POST: Workers/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -155,6 +151,17 @@ namespace Computer_Repair.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [Authorize]
+        public ActionResult Busy(int? page)
+        {
+            var busy = (from m in db.Workers
+                       join n in db.Orders
+                       on m.WorkerId equals n.WorkerId
+                       where (n.Completed == false)
+                       select m).Distinct();
+            return View(busy.ToList().ToPagedList(page ?? 1, 20));
         }
     }
 }

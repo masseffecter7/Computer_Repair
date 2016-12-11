@@ -31,6 +31,8 @@ namespace Computer_Repair.Models
         [Required]
         public string Characteristics { get; set; }
 
+        public string Guarantee { get; set; }
+
         [Required]
         public string Description { get; set; }
 

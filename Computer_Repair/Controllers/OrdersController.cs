@@ -18,32 +18,34 @@ namespace Computer_Repair.Controllers
 
         // GET: Orders
         [Authorize]
-        public ActionResult Index(int? page, string currentFilter, string OrderFind = "")
+        public ActionResult Index(int? page, string currentFilter1 = "", string CustomerFind = "", string currentFilter2 = "", string AccessorieFind = "", string currentFilter3 = "", string PrepaidFind = "")
         {
-            if (OrderFind == "")
+            if (CustomerFind == "" && AccessorieFind == "" && PrepaidFind == "false")
             {
-                OrderFind = currentFilter;
+                CustomerFind = currentFilter1;
+                AccessorieFind = currentFilter2;
+                PrepaidFind = currentFilter3;
             }
             else
             {
                 page = 1;
             }
-            ViewBag.CurrentFilter = OrderFind;
+            ViewBag.CurrentFilter1 = CustomerFind;
+            ViewBag.CurrentFilter2 = AccessorieFind;
+            ViewBag.CurrentFilter3 = PrepaidFind;
 
-            if (OrderFind != null)
-            {
-                var orders = from m in db.Orders.Include(o => o.Customers).Include(o => o.Workers).Include(o => o.Accessories).Include(o => o.Services)
-                             where m.OrderId.ToString().StartsWith(OrderFind)
-                             select m;
-                return View(orders.ToList().ToPagedList(page ?? 1, 20));
-            }
-            else
-            {
-                var orders = from m in db.Orders.Include(o => o.Customers).Include(o => o.Workers).Include(o => o.Accessories).Include(o => o.Services)
-                             select m;
-                return View(orders.ToList().ToPagedList(page ?? 1, 20));
-            }
-            
+            var orders = from m in db.Orders.Include(o => o.Customers).Include(o => o.Workers).Include(o => o.Accessories).Include(o => o.Services)
+                         select m;
+            if (CustomerFind != "")
+                orders = orders.Include(o => o.Customers).Include(o => o.Workers).Include(o => o.Accessories).Include(o => o.Services).
+                    Where(m => m.Customers.Name_Surname.StartsWith(CustomerFind));
+            if (AccessorieFind != "")
+                orders = orders.Include(o => o.Customers).Include(o => o.Workers).Include(o => o.Accessories).Include(o => o.Services).
+                    Where(m => m.Accessories.AccessorieName.StartsWith(AccessorieFind));
+            if (PrepaidFind != "")
+                orders = orders.Include(o => o.Customers).Include(o => o.Workers).Include(o => o.Accessories).Include(o => o.Services).
+                    Where(m => m.Prepaid.ToString().StartsWith(PrepaidFind));
+            return View(orders.ToList().ToPagedList(page ?? 1, 20));
         }
 
         // GET: Orders/Details/5
@@ -74,12 +76,10 @@ namespace Computer_Repair.Controllers
         }
 
         // POST: Orders/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderId,DateOfOrder,DateOfCompletion,AaccessorieId,CustomerId,Prepaid,Submitted,Completed,ServiceId,TotalCost,Guarantee,WorkerId")] Orders orders, string[] AccessorieId, string[] ServiceId)
+        public ActionResult Create([Bind(Include = "OrderId,DateOfOrder,DateOfCompletion,AccessorieId,CustomerId,Prepaid,Submitted,Completed,ServiceId,TotalCost,Guarantee,WorkerId")] Orders orders, string[] AccessorieId, string[] ServiceId)
         {
             if (ModelState.IsValid)
             {
@@ -116,12 +116,10 @@ namespace Computer_Repair.Controllers
         }
 
         // POST: Orders/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderId,DateOfOrder,DateOfCompletion,AaccessorieId,CustomerId,Prepaid,Submitted,Completed,ServiceId,TotalCost,Guarantee,WorkerId")] Orders orders, string[] AccessorieId, string[] ServiceId)
+        public ActionResult Edit([Bind(Include = "OrderId,DateOfOrder,DateOfCompletion,AccessorieId,CustomerId,Prepaid,Submitted,Completed,ServiceId,TotalCost,Guarantee,WorkerId")] Orders orders, string[] AccessorieId, string[] ServiceId)
         {
             if (ModelState.IsValid)
             {

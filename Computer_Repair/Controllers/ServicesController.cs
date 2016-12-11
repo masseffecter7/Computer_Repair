@@ -70,12 +70,10 @@ namespace Computer_Repair.Controllers
         }
 
         // POST: Services/Create
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ServiceId,Service,Discription,Price")] Services services)
+        public ActionResult Create([Bind(Include = "ServiceId,Service,Description,Price")] Services services)
         {
             if (ModelState.IsValid)
             {
@@ -104,8 +102,6 @@ namespace Computer_Repair.Controllers
         }
 
         // POST: Services/Edit/5
-        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
-        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -14,7 +14,7 @@
     <div class="form-horizontal">
         <h4>Orders</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
         @Html.HiddenFor(model => model.OrderId)
 
         <div class="form-group">
@@ -24,7 +24,7 @@
                 @Html.ValidationMessageFor(model => model.DateOfOrder, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.DateOfCompletion, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -37,7 +37,7 @@
             @Html.LabelFor(model => model.AccessorieId, "AccessorieId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("AccessorieId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ListOfAccessories, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.AccessorieId, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -81,7 +81,7 @@
             @Html.LabelFor(model => model.ServiceId, "ServiceId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ServiceId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ListOfServices, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.AccessorieId, "", new { @class = "text-danger" })
             </div>
         </div>
 
